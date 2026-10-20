@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Offline English vocabulary fiction and reading practice"><title>偷星者与失忆公爵：全词汇高复现·英语一阅读趣读版</title><style>
+:root{--paper:#faf7f1;--ink:#28282c;--muted:#77716c;--line:#ded6ca;--accent:#94553f;--surface:#fffdf8;--font:21px;--topbar-height:110px;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.85}
+button,input,select{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}a{color:var(--accent)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #4c8899;outline-offset:3px}
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:.65rem;padding:.65rem max(1rem,env(safe-area-inset-left));background:var(--paper);border-bottom:1px solid var(--line);font:14px/1.4 system-ui,sans-serif;flex-wrap:wrap}
+.topbar button,.topbar select{border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);padding:.45rem .65rem}.brand{flex:1;font-weight:650;min-width:120px}
+.icon-button{min-width:40px}.chapter-meter{font-size:12px;color:var(--muted)}
+main{max-width:760px;margin:0 auto;padding:2rem 1.4rem 7rem;font-size:var(--font)}
+.chapter{display:none}.chapter.active{display:block}.chapter h1{font-size:1.8em;line-height:1.2;letter-spacing:-.025em;margin:.5em 0 1.2em}.kicker,.meta{font:13px/1.6 system-ui,sans-serif;color:var(--muted)}
+.chapter p{margin:.9em 0}.chapter p[id]{scroll-margin-top:calc(var(--topbar-height) + 12px)}.vocab{color:inherit;text-decoration:none;cursor:pointer}.vocab.first{border-bottom:1px dotted #a99d8d}.aids-off .vocab{pointer-events:none;border:0}.aids-off .recall-control{display:none}
+.chapter-nav{display:flex;gap:1rem;justify-content:space-between;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font:15px system-ui,sans-serif}.chapter-nav button{color:var(--accent);background:transparent;border:0;padding:.6rem}
+.panel{position:fixed;inset:0 auto 0 0;z-index:20;width:min(440px,100vw);background:var(--surface);box-shadow:5px 0 40px #0003;padding:1.2rem;overflow:auto;transform:translateX(-110%);transition:transform .18s;font:15px/1.6 system-ui,sans-serif}.panel.open{transform:none}.panel-head{display:flex;justify-content:space-between;align-items:center}.panel-head h2{font-size:20px}.panel button.close,.dialog-head button{background:transparent;border:0;font-size:26px;color:var(--ink)}
+.scrim{position:fixed;inset:0;background:#0005;z-index:15}.search{width:100%;border:1px solid var(--line);border-radius:8px;padding:.7rem;background:var(--paper);color:var(--ink)}.tabs{display:flex;gap:.5rem;margin:1rem 0}.tabs button{flex:1;padding:.6rem;background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--ink)}.tabs button[aria-selected=true]{background:var(--accent);color:white;border-color:var(--accent)}
+.results button{display:block;width:100%;text-align:left;padding:.8rem 0;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink)}.results small{display:block;color:var(--muted)}.results .volume{margin-top:1rem;color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+dialog{position:fixed;inset:auto 1rem max(1rem,env(safe-area-inset-bottom));margin:0 auto;z-index:30;width:min(620px,calc(100vw - 2rem));max-height:75dvh;overflow:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);padding:1.3rem;box-shadow:0 12px 70px #0004;font:16px/1.7 system-ui,sans-serif}dialog::backdrop{background:#0004}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:1rem}.dialog-head h2{margin:0;font:700 28px Georgia,serif}.word-meta{font-size:12px;color:var(--muted)}.recall-input{width:100%;padding:.7rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px}.actions{display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}.actions button{border:1px solid var(--line);border-radius:6px;background:var(--accent);color:#fff;padding:.5rem .8rem}.actions button.secondary{color:var(--ink);background:transparent}.definition{border-top:1px solid var(--line);padding-top:.7rem;margin-top:1rem}.definition p{margin:.35rem 0}.source-list{font-size:11px;color:var(--muted);word-break:break-word}
+.guide{font:17px/1.8 system-ui,sans-serif}.guide h1{font:700 2rem/1.2 Georgia,serif}.guide h2{font-size:1.2rem;margin-top:2rem}.warning{border:1px solid var(--accent);border-radius:8px;padding:1rem}.start-reading{display:inline-block;margin:1rem 0;padding:.6rem 1rem;background:var(--accent);color:white;border-radius:8px;text-decoration:none}
+.exercise{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font:17px/1.7 system-ui,sans-serif}.question{margin:2rem 0}.options{display:grid;gap:.6rem}.options button{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:.7rem .9rem;text-align:left}.options button.correct{border-color:#438467;background:#43846716}.options button.wrong{border-color:#a54e43;background:#a54e4314}.options button:disabled{cursor:default;opacity:1}.feedback{margin:1rem 0;padding:.9rem;border-left:3px solid var(--accent);background:var(--surface)}.feedback blockquote{font:16px/1.8 Georgia,serif;margin:.8rem .2rem}.feedback a{font-size:13px}.practice-off .exercise{display:none}
+.toast{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--paper);border-radius:8px;padding:.6rem 1rem;font:14px system-ui,sans-serif;max-width:90vw}
+.record-tools{margin:0 0 1rem;padding:.8rem;border:1px solid var(--line);border-radius:8px;font:13px/1.6 system-ui,sans-serif}.record-tools summary{cursor:pointer;font-weight:650}.record-tools p{margin:.65rem 0}.record-tools label{display:flex;align-items:flex-start;gap:.45rem;margin:.65rem 0}.record-tools input[type=checkbox]{flex:0 0 auto;margin-top:.35rem}.record-tools button{padding:.5rem .65rem;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:6px}.record-tools button:disabled{opacity:.6}.record-tools .record-status{overflow-wrap:anywhere;color:var(--accent)}
+body.dark{--paper:#1e2023;--ink:#e9e3da;--muted:#aaa49c;--line:#45413d;--accent:#ddb39d;--surface:#282a2e;color-scheme:dark}body.dark .actions button,body.dark .start-reading,body.dark .tabs button[aria-selected=true]{color:#202124}
+@media(max-width:600px){:root{--font:20px}.topbar{gap:.4rem;padding:.5rem .7rem}.brand{font-size:12px;min-width:80px}.topbar button,.topbar select{padding:.4rem .5rem}main{padding:1.4rem 1.1rem 5rem}.chapter h1{font-size:1.65em}dialog{inset:auto .5rem max(.5rem,env(safe-area-inset-bottom));width:calc(100vw - 1rem);padding:1rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+body.reader-is-loading>.topbar,body.reader-is-loading>main,body.reader-is-loading>#panel,body.reader-is-loading>#scrim{visibility:hidden}
+#reader-loading{position:fixed;inset:0;z-index:100;background:var(--paper);color:var(--ink);display:grid;place-content:center;padding:2rem;font:16px/1.8 system-ui,sans-serif;overflow:auto}
+#reader-loading[hidden]{display:none}#reader-loading>div{max-width:560px;margin:auto}#reader-loading h1{font-size:1.5rem;line-height:1.4}#reader-loading button{padding:.7rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--accent);color:#fff}
+</style></head><body class="reader-is-loading"><section id="reader-loading" role="status" aria-live="polite" aria-busy="true"><div><h1 id="reader-loading-title">正在打开阅读器</h1><p id="reader-loading-message">正在加载完整小说和词库。首次打开约需下载 28 MB，移动网络可能需要稍等。加载完成后会自动恢复本设备的阅读位置。</p><button type="button" id="reader-retry" hidden>重新加载</button></div></section><noscript><style>#reader-loading{display:none}</style><p style="padding:2rem">请启用 JavaScript 后重新打开阅读器。</p></noscript><header class="topbar"><button id="menu" class="icon-button" aria-label="打开目录与词汇搜索">☰</button><span class="brand">The Reading Room</span><span class="chapter-meter" id="meter">阅读导读</span><button id="font-smaller" aria-label="减小字号">A−</button><button id="font-larger" aria-label="增大字号">A+</button><button id="theme">夜间</button><button id="aids" aria-pressed="true">词义：开</button><button id="recall" class="recall-control" aria-pressed="true">回忆：开</button><button id="practice" aria-pressed="true">练习：开</button></header><div id="scrim" class="scrim" hidden></div><aside class="panel" id="panel" aria-label="目录与词汇" aria-hidden="true"><div class="panel-head"><h2>目录与词汇</h2><button class="close" id="close-panel" aria-label="关闭">×</button></div><details class="record-tools"><summary>学习记录与设备迁移</summary><p>生词自评、阅读位置和自测记录保存在当前设备的浏览器中，<strong>不会自动同步</strong>。换设备前先导出，再在另一设备导入。原离线文件的旧记录也需先在原浏览器打开该文件后导出。</p><div class="actions"><button type="button" id="export-progress">导出学习记录</button><button type="button" id="import-progress">导入学习记录</button></div><input id="progress-file" type="file" accept="application/json,.json" hidden aria-label="选择学习记录备份"><label><input id="import-position" type="checkbox">同时迁移备份中的阅读位置</label><label><input id="import-settings" type="checkbox">同时迁移备份中的字号、主题和辅助设置</label><p>默认只合并生词与自测；同词保留较新的自评，同题保留较早的首次作答。导入位置和设置前，请勾选上面的相应选项。</p><p id="record-status" class="record-status" role="status" aria-live="polite"></p></details><input id="search" class="search" type="search" placeholder="搜索章节、英文词或中文词义" aria-label="搜索章节或词汇"><div class="tabs" role="tablist"><button data-tab="chapters" role="tab" aria-selected="true">章节</button><button data-tab="words" role="tab" aria-selected="false">词汇</button><button data-tab="review" role="tab" aria-selected="false">回顾</button></div><p class="meta" id="result-count" aria-live="polite"></p><div class="results" id="results"></div></aside><main><section class="guide" id="guide"><h1>偷星者与失忆公爵：全词汇高复现·英语一阅读趣读版</h1><p class="noindent">一部用考研词汇推进阴谋、爱情与冒险的英文小说。</p><h2>怎样读</h2><p>先跟着故事读。词语的轻微虚线提示可查询词义，重复出现时不再反复着色。阅读器的字号可调整；电子书请使用阅读软件的字号设置。</p><p>遇到熟词，先回想语境中的含义，再查询核对。离线网页设有回忆模式，点击词语后先输入你的理解，或主动点击“揭晓词义”。阅读练习需要先选答案，再查看解析与对应原段。电子书的解析放在独立页面，需主动跳转。</p><p>反复接触有助于建立词义与语境的联系，但看完一次并不等于保证永久记住。建议隔天返回前文，并用回忆模式检查。</p><h2>词汇覆盖如何计算</h2><p>本文件有 288 章，正文约 337,218 个英文词。来源词表有 9,365 个词条、30,614 条来源记录。正文已有 9,034 个词条的原词形出现，另有明确标记的变体与语法模式命中。</p><p>词条包括单词、固定短语和语法结构；相近或重复写法保留来源。验收要求每项在故事正文至少出现 3 次，分布于至少 3 个章节；正常变形与具体化的短语结构按下述规则另列。覆盖清单列出三个章节的原文语境与位置。</p><p>覆盖审计只统计英文故事段落；目录、词义、索引、问题、答案和本导读一律不计入。原词形、指定变体、人工限定语法模式分别记数。词表中的同一个词出现在多份材料中，不会把来源次数当作正文复现次数。</p><p>大小写、弯直撇号、常见连字符以及重复空白会规范化；不自动把任意屈折词形算成原词形。sb/sth 等语法占位词若有人工限定的匹配规则，正文中的正常人称和宾语表达将单列为语法模式命中。显式列明的正常过去式、复数及短语变位也计入结构匹配；不把派生词任意混算。</p><h2>把熟悉变成可以回忆</h2>
+<p>本书的目标是词汇和英语一精确阅读。正文出现三次是可核验的编辑底线，不是记忆已经完成的证明。真正的检查，是撤掉词义后能否在不同句子里读懂、能否过几天再回忆，以及面对新材料能否找出判断依据。</p>
+<p>每天时间少时，读一个场景并回忆昨天遇到的五个词；有四十分钟时，读一章、做阅读题，再从错词中选十个回忆；时间充裕时，增加长句拆解与限时新材料。故事可以连续读，回顾不要全部挤在当天。</p>
+<p>回顾间隔可从1天逐步拉开到3、7、14、30天，仍不稳的词提前再练。这是便于执行的起点，不是对每个人都最优的固定间隔。忘记的词缩短间隔，连续答对的词拉长间隔。能认出不等于能提取；先试着写意思或补词，再揭晓核对。阅读器中的自由回答由你对照语境自查，不会假装自动判断中文释义对错。</p>
+<p>检查阅读时，先回答三件事：这一段谁在主张什么；证据能支持到哪一步；转折、否定和限定改变了哪个结论。错题要回到具体句子，不以“情节大概如此”替代文字依据。长句先找主干，再标出修饰范围和逻辑关系，最后核对词义。</p>
+<p>卷末或阶段回顾时，抽取十个词放进未见过的句子，解释意思和搭配；隔一周再测，记录仍需查词的项。若只是想起小说情节，却无法读懂新句，继续换语境练习。不能把阅读页数或一次选择题成绩当作英语水平已经提升的证明。</p>
+<h2>遇到长句时怎样拆</h2>
+<p>先自己判断句子主干和限制条件，再看以下解析。例句都来自本书；解析不计词汇覆盖。</p>
+<p><strong>1．动作不等于结论。</strong>“On Rowan's paper it broke into individual acts: a sailor earning a pay packet, a technician signing a form, a financial officer deciding which company would take in the liability.”</p>
+<p>主干是 it broke into individual acts；冒号后并列三组“人＋正在做的事”，解释 acts。第三组中 which company 引出 deciding 的内容。先辨认三项并列，别把 earning、signing、deciding 当成三个新的完整句子。问自己：这句在补充具体例子，还是提出相反观点？</p>
+<p><strong>2．层层嵌套，仍找同一个主干。</strong>“For all the pressure of the questions, the difficult moment had been the one in which he admitted that he could no longer trust an account built partly from his own name.”</p>
+<p>For all 表让步，“尽管承受提问的压力”。主干是 the difficult moment had been the one。in which 修饰 the one，说明哪一刻；that 从句是 admitted 的内容；built partly from his own name 修饰 account。“主要困难”不必等于让步部分提到的压力。注意 partly 与 no longer 对判断范围和时间的限制。</p>
+<p><strong>3．同一对象的两次比较。</strong>“He had offered to tell her everything he knew about the hospital, which was considerably less than she knew about its earliest equipment and more than she knew about its current cakes.”</p>
+<p>主干是 He had offered to tell her everything；he knew 修饰 everything。后半句比较他所知的内容：比她对早期设备的了解少，却比她对现在蛋糕的了解多。and 连接两个比较，而非两个完全相反的事实。不要读成“他对医院的了解比她在所有方面都多”。</p>
+<p><strong>4．only 的限制在哪里。</strong>“The first broadcast would last only long enough to give practical information: where to find independent legal help, how to contact family-support volunteers, and which services remained open.”</p>
+<p>主干是 The first broadcast would last；only 限制持续时间，long enough to…表示“够完成某事这么久”。冒号后三项分别说明 practical information，不是三个全新的广播。它没有说这些服务解决了所有问题。英语一常考的是这种限定后的准确意思。</p>
+<p>每读完一个有转折或长定语的段落，试用一句中文写清“谁主张什么，适用于谁，凭什么”。下一次遇到相同结构，换掉例句仍能分析，才算把方法带出了故事。</p>
+
+<h2>材料与语言处理</h2>
+<p>故事、人物、对白和阅读题均为原创。参考书仅提供逆袭、伙伴冒险与偏爱爱情的类型启发。句子结构参考了上传英语一真题的让步、限定、指代、推断和态度表达，不移植真题答案。原词表中的明显错拼使用规范形式，原写法和出处留在覆盖清单；同一词的不同来源不增加正文频次。词义查询保留材料所列义项，正文覆盖并不代表穷尽一个词的全部词义。</p>
+<p>计数也排除了明确的人名巧合，例如记者 June 的名字不算“六月”，人物姓氏 Reed 不算“芦苇”。月份、普通名词和历史称谓使用相应语境；少数材料释义不准确的词另附用法说明。拼写、语法和语境核对是编辑检查，不能代替你在新文章中的理解检验。</p>
+<p>记忆设计参考：Karpicke与Roediger的外语词汇实验强调反复提取的重要性；另一项词汇研究考察了改变提取线索对保持的作用。它们支持加入主动回忆与变化语境，不支持“只读一遍小说就保证永久熟记”的承诺。</p>
+<p><a href="https://doi.org/10.1126/science.1152408">The Critical Importance of Retrieval for Learning</a><br/><a href="https://doi.org/10.1073/pnas.2413511121">The role of variable retrieval in effective learning</a></p>
+<h2>词形资料许可</h2>
+<p>部分词性和不规则屈折表使用WordNet 3.0。以下保留其许可声明。</p>
+<div class="license"><p>WordNet Release 3.0</p><p>This software and database is being provided to you, the LICENSEE, by  
+Princeton University under the following license.  By obtaining, using  
+and/or copying this software and database, you agree that you have  
+read, understood, and will comply with these terms and conditions.:  
+  
+Permission to use, copy, modify and distribute this software and  
+database and its documentation for any purpose and without fee or  
+royalty is hereby granted, provided that you agree to comply with  
+the following copyright notice and statements, including the disclaimer,  
+and that the same appear on ALL copies of the software, database and  
+documentation, including modifications that you make for internal  
+use or for distribution.  
+  
+WordNet 3.0 Copyright 2006 by Princeton University.  All rights reserved.  
+  
+THIS SOFTWARE AND DATABASE IS PROVIDED &quot;AS IS&quot; AND PRINCETON  
+UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR  
+IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, PRINCETON  
+UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES OF MERCHANT-  
+ABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE  
+OF THE LICENSED SOFTWARE, DATABASE OR DOCUMENTATION WILL NOT  
+INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR  
+OTHER RIGHTS.  
+  
+The name of Princeton University or Princeton may not be used in  
+advertising or publicity pertaining to distribution of the software  
+and/or database.  Title to copyright in this software, database and  
+any associated documentation shall at all times remain with  
+Princeton University and LICENSEE agrees to preserve same.  
+</p></div>
+<a class="start-reading" href="#chapter-0001">开始阅读 →</a></section><div id="story-content"></div></main><dialog id="word-dialog" aria-labelledby="word-title"><div class="dialog-head"><h2 id="word-title"></h2><button id="close-dialog" aria-label="关闭词义窗口">×</button></div><p class="word-meta" id="word-stats"></p><div id="recall-box"><label for="recall-input">先回忆这个词在语境中的意思</label><input id="recall-input" class="recall-input" placeholder="输入你的中文理解或英文释义" autocomplete="off"><div class="actions"><button id="check-recall">输入后核对</button></div></div><p class="word-meta" id="recall-status" aria-live="polite"></p><div class="actions"><button id="reveal">揭晓词义</button><button id="first-use" class="secondary">返回首次出现</button></div><div class="definition" id="definition" hidden></div><div id="ratings" hidden><p class="word-meta">核对语境后自评，安排下次回顾</p><div class="actions"><button data-grade="0">忘了</button><button data-grade="1">有点熟</button><button data-grade="2">能回忆</button></div></div><div id="alternates" class="actions"></div><details class="source-list"><summary>词表来源</summary><p id="sources"></p></details></dialog><div class="toast" id="toast" role="status" hidden></div><noscript><p style="padding:2rem">此离线阅读器需要浏览器启用 JavaScript。可使用同目录中的 EPUB 阅读完整小说与词汇索引。</p></noscript><script>
+// BEGIN_READER_DATA_LOADER
+const readerDataConfig={"version":"535f9fce89657392","title":"偷星者与失忆公爵：全词汇高复现·英语一阅读趣读版","storageKey":"vocabbook-9765e1db1c3a-","chapterCount":296,"wordCount":9365};
+async function loadReaderBook(fetcher=fetch){
+ const version=readerDataConfig.version;
+ const parts=await Promise.all([1,2].map(async number=>{
+  const response=await fetcher('./book-'+number+'.json?v='+version);
+  if(!response.ok)throw new Error('阅读数据下载未完成。');
+  return response.json();
+ }));
+ const [first,second]=parts;
+ if(!first||!second||first.version!==version||second.version!==version||first.part!==1||second.part!==2)throw new Error('阅读数据版本不一致。');
+ const source=first.data;
+ if(!source||!Array.isArray(source.chapters)||!Array.isArray(source.words)||!Array.isArray(second.chapters))throw new Error('阅读数据格式不完整。');
+ const data={...source,chapters:[...source.chapters,...second.chapters]};
+ if(data.title!==readerDataConfig.title||data.storageKey!==readerDataConfig.storageKey||data.expectedEntryCount!==readerDataConfig.wordCount||data.words.length!==readerDataConfig.wordCount||data.chapters.length!==readerDataConfig.chapterCount)throw new Error('阅读数据与页面版本不符。');
+ if(new Set(data.chapters.map(c=>c?.id)).size!==data.chapters.length||data.chapters.some(c=>!c||typeof c.id!=='string'||typeof c.html!=='string'||!Array.isArray(c.paragraphs)||!Array.isArray(c.questions)))throw new Error('章节数据不完整。');
+ return data;
+}
+function showReaderLoadError(){
+ const shell=document.getElementById('reader-loading');shell.hidden=false;shell.setAttribute('aria-busy','false');
+ document.getElementById('reader-loading-title').textContent='阅读器暂时没有加载完成';
+ document.getElementById('reader-loading-message').textContent='请检查网络后重新加载。若刚完成部署，可稍等片刻再试；请通过网站地址打开此版本。你的浏览器学习记录不会因本次加载失败而清除。';
+ const retry=document.getElementById('reader-retry');retry.hidden=false;retry.onclick=()=>location.reload();
+}
+function finishReaderLoading(){document.body.classList.remove('reader-is-loading');document.getElementById('reader-loading').hidden=true}
+// END_READER_DATA_LOADER
+
+(async()=>{'use strict';
+const data=await loadReaderBook();
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const state={chapter:-1,tab:'chapters',word:0,aids:true,recall:true};
+const storage={get(k,d){try{return JSON.parse(localStorage.getItem(data.storageKey+k))??d}catch{return d}},set(k,v){try{localStorage.setItem(data.storageKey+k,JSON.stringify(v));return true}catch{toast('保存失败：请检查浏览器是否允许存储，并及时导出学习记录。');return false}}};
+const reviews=Object.assign(Object.create(null),storage.get('reviews',{})), reviewKey=w=>String(w.word).normalize('NFKC').toLowerCase();
+const attempts=Object.assign(Object.create(null),storage.get('attempts',{})), attemptKey=(ci,qi)=>data.chapters[ci].id+'|'+data.chapters[ci].questions[qi].stem;
+function renderScore(ci){const el=document.querySelector(`[data-score="${ci}"]`);if(!el)return;const q=data.chapters[ci].questions,done=q.map((_,qi)=>attempts[attemptKey(ci,qi)]).filter(Boolean);el.textContent=`首次自测：已答 ${done.length}/${q.length}，答对 ${done.filter(x=>x.correct).length} 题。只记录本书练习，不换算考试分数；记录保存在此浏览器。`}
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normalize=s=>String(s).normalize('NFKC').toLowerCase().replace(/[‘’ʼ＇]/g,"'").replace(/[‐‑‒–—―−]/g,'-').replace(/\s+/g,' ').trim();
+// BEGIN_PROGRESS_TRANSFER_CORE
+const progressFields=['reviews','attempts','chapter','anchor','aids','recall','font','dark','practice'];
+const knownReviewKeys=new Set(data.words.map(w=>String(w.word).normalize('NFKC').toLowerCase()));
+const knownQuestions=new Map(data.chapters.flatMap(c=>c.questions.map(q=>[c.id+'|'+q.stem,q])));
+const owns=(obj,key)=>Object.prototype.hasOwnProperty.call(obj,key);
+function requireObject(obj,fields,label){
+ if(!obj||Array.isArray(obj)||typeof obj!=='object')throw new Error(label+'格式不正确。');
+ if(fields&&(Object.keys(obj).some(k=>!fields.includes(k))||fields.some(k=>!owns(obj,k))))throw new Error(label+'字段不完整或包含不支持的字段。');
+}
+function requireInteger(value,min,max,label){if(!Number.isSafeInteger(value)||value<min||value>max)throw new Error(label+'超出允许范围。')}
+function validateBackup(value,now=Date.now()){
+ requireObject(value,['schemaVersion','bookStorageKey','exportedAt','records'],'备份文件');
+ if(value.schemaVersion!==1)throw new Error('不支持这个备份版本。');
+ if(value.bookStorageKey!==data.storageKey)throw new Error('这个备份属于另一本书，未导入任何记录。');
+ const latest=now+7*86400000;requireInteger(value.exportedAt,0,latest,'导出时间');
+ const r=value.records;requireObject(r,progressFields,'学习记录');
+ requireObject(r.reviews,null,'生词记录');requireObject(r.attempts,null,'自测记录');
+ if(Object.keys(r.reviews).length>knownReviewKeys.size||Object.keys(r.attempts).length>knownQuestions.size)throw new Error('记录数量超出本书范围。');
+ const safeReviews=Object.create(null),safeAttempts=Object.create(null);
+ for(const [key,item] of Object.entries(r.reviews)){
+  if(!knownReviewKeys.has(key))throw new Error('生词记录包含本书没有的词条。');
+  requireObject(item,['n','due','last','grade'],'生词自评');
+  requireInteger(item.n,0,1000000,'复习次数');requireInteger(item.grade,0,2,'自评等级');
+  requireInteger(item.last,0,latest,'自评时间');requireInteger(item.due,item.last,item.last+61*86400000,'回顾时间');
+  safeReviews[key]={n:item.n,due:item.due,last:item.last,grade:item.grade};
+ }
+ for(const [key,item] of Object.entries(r.attempts)){
+  const q=knownQuestions.get(key);if(!q)throw new Error('自测记录包含本书没有的题目。');
+  requireObject(item,['correct','choice','at'],'自测答题');
+  if(typeof item.choice!=='string'||!q.options.includes(item.choice)||typeof item.correct!=='boolean'||item.correct!==(item.choice===q.options[q.answer]))throw new Error('自测选项或成绩与本书题目不符。');
+  requireInteger(item.at,0,latest,'答题时间');safeAttempts[key]={correct:item.correct,choice:item.choice,at:item.at};
+ }
+ requireInteger(r.chapter,-1,data.chapters.length-1,'阅读章节');
+ if(typeof r.anchor!=='string')throw new Error('阅读位置格式不正确。');
+ if(r.chapter<0){if(r.anchor!=='guide')throw new Error('导读位置不正确。')}
+ else{const c=data.chapters[r.chapter],prefix=c.anchor+'-p',pi=r.anchor.startsWith(prefix)?Number(r.anchor.slice(prefix.length)):NaN;
+  if(r.anchor!==c.anchor&&!(Number.isSafeInteger(pi)&&pi>=1&&pi<=c.paragraphs.length&&r.anchor===prefix+pi))throw new Error('阅读位置不属于相应章节。')}
+ for(const key of ['aids','recall','dark','practice'])if(typeof r[key]!=='boolean')throw new Error('显示设置格式不正确。');
+ requireInteger(r.font,16,32,'字号');
+ return {reviews:safeReviews,attempts:safeAttempts,chapter:r.chapter,anchor:r.anchor,aids:r.aids,recall:r.recall,font:r.font,dark:r.dark,practice:r.practice};
+}
+function mergeProgress(current,incoming){
+ const mergedReviews=Object.assign(Object.create(null),current.reviews),mergedAttempts=Object.assign(Object.create(null),current.attempts);
+ let reviewsChanged=0,attemptsChanged=0;
+ for(const [key,item] of Object.entries(incoming.reviews))if(!owns(mergedReviews,key)||item.last>mergedReviews[key].last){mergedReviews[key]={...item};reviewsChanged++}
+ for(const [key,item] of Object.entries(incoming.attempts))if(!owns(mergedAttempts,key)||item.at<mergedAttempts[key].at){mergedAttempts[key]={...item};attemptsChanged++}
+ return {reviews:mergedReviews,attempts:mergedAttempts,reviewsChanged,attemptsChanged};
+}
+function selectImportEntries(merged,incoming,movePosition=false,moveSettings=false){
+ const entries={reviews:merged.reviews,attempts:merged.attempts};
+ if(movePosition){entries.chapter=incoming.chapter;entries.anchor=incoming.anchor}
+ if(moveSettings)for(const key of ['aids','recall','font','dark','practice'])entries[key]=incoming[key];
+ return entries;
+}
+// END_PROGRESS_TRANSFER_CORE
+let renderToken=0, toastTimer;
+function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2500)}
+function readProgressRecords(){
+ const chapter=storage.get('chapter',-1);
+ return {reviews:{...reviews},attempts:{...attempts},chapter,anchor:storage.get('anchor',chapter<0?'guide':data.chapters[chapter]?.anchor),aids:state.aids,recall:state.recall,font,dark,practice};
+}
+function makeBackup(){const value={schemaVersion:1,bookStorageKey:data.storageKey,exportedAt:Date.now(),records:readProgressRecords()};validateBackup(value);return value}
+function persistProgress(entries){
+ const prepared=Object.entries(entries).map(([key,value])=>[data.storageKey+key,JSON.stringify(value)]),previous=[];
+ try{for(const [key] of prepared)previous.push([key,localStorage.getItem(key)]);for(const [key,value] of prepared)localStorage.setItem(key,value)}
+ catch{for(const [key,value] of previous){try{if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value)}catch{}}throw new Error('浏览器未能保存记录。请检查可用空间或存储权限；未确认导入成功。')}
+}
+function recordStatus(message){$('#record-status').textContent=message}
+$('#export-progress').onclick=()=>{
+ try{const backup=makeBackup(),blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='偷星者_学习记录.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);recordStatus('已生成备份。请保存下载的 JSON 文件，再到另一设备打开同一阅读器并导入。')}
+ catch(error){recordStatus('无法导出：'+error.message)}
+};
+$('#import-progress').onclick=()=>$('#progress-file').click();
+$('#progress-file').onchange=async event=>{
+ const file=event.target.files?.[0];if(!file)return;
+ const movePosition=$('#import-position').checked,moveSettings=$('#import-settings').checked;
+ $('#export-progress').disabled=true;$('#import-progress').disabled=true;
+ try{
+  if(file.size>5*1024*1024)throw new Error('文件超过 5 MB，请选择本阅读器导出的学习记录 JSON。');
+  let raw;try{raw=JSON.parse(await file.text())}catch{throw new Error('文件无法识别，请选择本阅读器导出的学习记录 JSON。')}
+  const incoming=validateBackup(raw),current=validateBackup(makeBackup()),merged=mergeProgress(current,incoming),entries=selectImportEntries(merged,incoming,movePosition,moveSettings);
+  persistProgress(entries);
+  for(const key of Object.keys(reviews))delete reviews[key];Object.assign(reviews,merged.reviews);
+  for(const key of Object.keys(attempts))delete attempts[key];Object.assign(attempts,merged.attempts);
+  if(moveSettings){aids(incoming.aids);recall(incoming.recall);fontSize(incoming.font);theme(incoming.dark);practiceMode(incoming.practice)}
+  if(movePosition){location.hash=incoming.anchor;showChapter(incoming.chapter,incoming.anchor,false)}
+  else if(state.chapter>=0)renderScore(state.chapter);
+  renderResults();recordStatus(`已合并：更新 ${merged.reviewsChanged} 个词的自评，补入 ${merged.attemptsChanged} 条首次自测。${movePosition?'已迁移阅读位置。':'保留此设备阅读位置。'}${moveSettings?'已迁移显示设置。':'保留此设备显示设置。'}各设备仍需手动导出、导入。`);
+ }catch(error){recordStatus('未完成导入：'+error.message)}
+ finally{event.target.value='';$('#export-progress').disabled=false;$('#import-progress').disabled=false}
+};
+function showChapter(index,anchor,save=true){
+ index=Math.max(-1,Math.min(data.chapters.length-1,index));state.chapter=index;
+ $('#guide').hidden=index>=0;$('#story-content').innerHTML=index<0?'':data.chapters[index].html;if(index>=0){const chapter=$('#story-content .chapter');chapter.classList.add('active');chapter.setAttribute('aria-hidden','false');renderScore(index)}
+ $('#meter').textContent=index<0?'阅读导读':`${index+1} / ${data.chapters.length}`;
+ document.title=(index<0?data.title:data.chapters[index].title)+' · Reading Room';
+ if(save){storage.set('chapter',index);storage.set('anchor',anchor||data.chapters[index]?.anchor||'guide')}closePanel();
+ if(anchor){requestAnimationFrame(()=>{const el=document.getElementById(anchor);if(el)el.scrollIntoView({block:'start'});else scrollTo(0,0)})}else scrollTo(0,0);
+}
+function navigateHash(){const id=decodeURIComponent(location.hash.slice(1));let m=id.match(/^chapter-(\d{4})(?:-|$)/);if(m)showChapter(Number(m[1])-1,id);else if(id==='guide')showChapter(-1);else if(id.startsWith('word-'))openWord(Number(id.slice(5)))}
+function openPanel(){ $('#panel').classList.add('open');$('#scrim').hidden=false;$('#panel').setAttribute('aria-hidden','false');$('#search').focus();renderResults() }
+function closePanel(){ $('#panel').classList.remove('open');$('#scrim').hidden=true;$('#panel').setAttribute('aria-hidden','true') }
+function renderResults(){
+ const token=++renderToken, query=normalize($('#search').value), root=$('#results');root.replaceChildren();
+ if(state.tab==='chapters'){
+  let lastVolume=null;const items=data.chapters.map((c,i)=>({c,i})).filter(({c})=>normalize(c.title+' '+c.volume).includes(query));
+  if(!query){let b=document.createElement('button');b.textContent='阅读导读';b.onclick=()=>{location.hash='guide';showChapter(-1)};root.append(b)}
+  for(const {c,i} of items){if(c.volume!==lastVolume){let v=document.createElement('div');v.className='volume';v.textContent=c.volume;root.append(v);lastVolume=c.volume}let b=document.createElement('button');b.innerHTML=escape(c.title)+`<small>${c.wordCount.toLocaleString()} words${c.questions.length?' · '+c.questions.length+' reading questions':''}</small>`;b.onclick=()=>{location.hash=c.anchor;showChapter(i,c.anchor)};root.append(b)}
+  $('#result-count').textContent=`${items.length} 章／篇`;if(!items.length)root.textContent='没有找到相应章节。';return;
+ }
+ const unique=new Set();const items=data.words.map((w,i)=>({w,i})).filter(({w})=>normalize(w.word+' '+w.meanings.join(' ')).includes(query)).filter(({w})=>{if(state.tab!=='review')return true;const k=reviewKey(w),r=reviews[k];if(!r||r.due>Date.now()||unique.has(k))return false;unique.add(k);return true}).sort((a,b)=>state.tab==='review'?(reviews[reviewKey(a.w)].due-reviews[reviewKey(b.w)].due):a.w.word.localeCompare(b.w.word,'en'));
+ $('#result-count').textContent=state.tab==='review'?`到期 ${items.length} 个；已自评 ${Object.keys(reviews).length} 个。先回忆，再核对；记录保存在此浏览器。`:`${items.length.toLocaleString()} 个来源词条，按字母排列`;
+ let cursor=0;function batch(){if(token!==renderToken)return;const fragment=document.createDocumentFragment();for(let n=0;n<80&&cursor<items.length;n++,cursor++){let {w,i}=items[cursor],b=document.createElement('button');b.innerHTML=escape(w.word)+`<small>正文 ${w.exact+w.variant+w.pattern} 次 · ${w.chapterCount} 章</small>`;b.onclick=()=>openWord(i);fragment.append(b)}root.append(fragment);if(cursor<items.length)requestAnimationFrame(batch)}batch();
+ if(!items.length)root.textContent=state.tab==='review'?'当前没有到期词。阅读查词后，先回忆再自评；忘记的词会较快回来。':'没有找到相应词条。';
+}
+function showDefinition(){const w=data.words[state.word];$('#definition').hidden=false;$('#definition').innerHTML=(w.meanings.map(m=>'<p>'+escape(m)+'</p>').join('')||'<p>来源未提供释义。</p>')+(w.notes||[]).map(n=>'<p class="word-meta">'+escape(n)+'</p>').join('');$('#reveal').hidden=true;$('#ratings').hidden=false;$('#recall-status').textContent=$('#recall-input').value.trim()?'对照语境检查你的回忆，不按字面一致程度打分。':''}
+function openWord(index){
+ if(!state.aids){toast('词义辅助已关闭。可在顶部重新开启。');return}if(!data.words[index])return;state.word=index;
+ const w=data.words[index];$('#word-title').textContent=w.word;$('#word-stats').textContent=`正文累计 ${w.exact+w.variant+w.pattern} 次 · ${w.chapterCount} 章`;
+ $('#recall-box').hidden=!state.recall;$('#recall-input').value='';$('#recall-status').textContent='';$('#definition').hidden=true;$('#definition').replaceChildren();$('#reveal').hidden=false;$('#ratings').hidden=true;
+ $('#sources').textContent='来源：'+w.sources.join('；');$('#first-use').hidden=!w.first;
+ $('#first-use').onclick=()=>{if(w.first){$('#word-dialog').close();location.hash=w.first;const m=w.first.match(/^chapter-(\d{4})/);showChapter(Number(m[1])-1,w.first)}};
+ $('#alternates').replaceChildren();
+ if(!$('#word-dialog').open)$('#word-dialog').showModal();
+ if(state.recall)setTimeout(()=>$('#recall-input').focus(),30);else showDefinition();
+}
+document.addEventListener('click',event=>{
+ const term=event.target.closest('a[data-words]');if(term){event.preventDefault();if(!state.aids)return;const ids=term.dataset.words.split(',').map(Number);openWord(ids[0]);if(ids.length>1){const others=ids.slice(1);for(const i of others){let b=document.createElement('button');b.className='secondary';b.textContent=data.words[i].word;b.onclick=()=>openWord(i);$('#alternates').append(b)}}return}
+ const option=event.target.closest('[data-option]');if(option){const block=option.closest('[data-question]'),[ci,qi]=block.dataset.question.split(',').map(Number),q=data.chapters[ci].questions[qi],choice=Number(option.dataset.option);const key=attemptKey(ci,qi);if(!attempts[key]){attempts[key]={correct:choice===q.answer,choice:q.options[choice],at:Date.now()};storage.set('attempts',attempts)}renderScore(ci);$$(`[data-question="${ci},${qi}"] [data-option]`).forEach((b,i)=>{b.disabled=true;if(i===q.answer)b.classList.add('correct');else if(i===choice)b.classList.add('wrong')});let f=block.querySelector('.feedback');f.hidden=false;f.innerHTML=`<strong>${choice===q.answer?'回答正确':'正确答案：'+String.fromCharCode(65+q.answer)}</strong><p>${escape(q.explanation)}</p>`;for(const pi of q.evidence){let a=document.createElement('a');a.href='#'+data.chapters[ci].anchor+'-p'+pi;a.textContent='返回原文第 '+pi+' 段 →';a.onclick=()=>showChapter(ci,data.chapters[ci].anchor+'-p'+pi);f.append(a);let quote=document.createElement('blockquote');quote.textContent=data.chapters[ci].paragraphs[pi-1];f.append(quote)}return}
+ const reset=event.target.closest('[data-reset]');if(reset){const ci=Number(reset.dataset.reset);data.chapters[ci].questions.forEach((_,qi)=>delete attempts[attemptKey(ci,qi)]);storage.set('attempts',attempts);document.querySelectorAll(`[data-question^="${ci},"]`).forEach(block=>{block.querySelectorAll('[data-option]').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});block.querySelector('.feedback').hidden=true});renderScore(ci);return}
+ const nav=event.target.closest('[data-go]');if(nav){const ci=Number(nav.dataset.go);if(ci<0){location.hash='guide';showChapter(-1)}else{location.hash=data.chapters[ci].anchor;showChapter(ci,data.chapters[ci].anchor)}}
+});
+$('#menu').onclick=openPanel;$('#close-panel').onclick=closePanel;$('#scrim').onclick=closePanel;
+$('#close-dialog').onclick=()=>$('#word-dialog').close();$('#word-dialog').addEventListener('click',event=>{if(event.target===$('#word-dialog')){const r=event.target.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)event.target.close()}});
+$('#search').addEventListener('input',()=>{clearTimeout(window.searchDelay);window.searchDelay=setTimeout(renderResults,120)});
+$$('[data-tab]').forEach(b=>b.onclick=()=>{state.tab=b.dataset.tab;$$('[data-tab]').forEach(t=>t.setAttribute('aria-selected',String(t===b)));$('#result-count').textContent='';renderResults()});
+$('#reveal').onclick=showDefinition;$('#check-recall').onclick=()=>{if(!$('#recall-input').value.trim()){$('#recall-status').textContent='先输入你的理解，或直接点击“揭晓词义”。';$('#recall-input').focus();return}showDefinition()};$('#recall-input').addEventListener('keydown',e=>{if(e.key==='Enter')$('#check-recall').click()});
+$$('[data-grade]').forEach(b=>b.onclick=()=>{const w=data.words[state.word],key=reviewKey(w),old=reviews[key]||{n:0},grade=Number(b.dataset.grade),n=grade===2?old.n+1:grade===1?Math.max(0,old.n-1):0,days=[1,3,7,14,30,60][Math.min(5,Math.max(0,n-1))],delay=grade===0?600000:grade===1?86400000:days*86400000;reviews[key]={n,due:Date.now()+delay,last:Date.now(),grade};const saved=storage.set('reviews',reviews);$('#word-dialog').close();if(saved)toast(grade===0?'已加入稍后回顾':'已保存自评，按间隔回顾');if(state.tab==='review')renderResults()});
+function aids(value){state.aids=value;document.body.classList.toggle('aids-off',!value);$('#aids').textContent=value?'词义：开':'词义：关';$('#aids').setAttribute('aria-pressed',String(value));if(!value)$('#word-dialog').close();storage.set('aids',value)}
+function recall(value){state.recall=value;$('#recall').textContent=value?'回忆：开':'回忆：关';$('#recall').setAttribute('aria-pressed',String(value));storage.set('recall',value)}
+$('#aids').onclick=()=>aids(!state.aids);$('#recall').onclick=()=>recall(!state.recall);
+let font=storage.get('font',21);function fontSize(n){font=Math.max(16,Math.min(32,n));document.documentElement.style.setProperty('--font',font+'px');storage.set('font',font)}$('#font-smaller').onclick=()=>fontSize(font-1);$('#font-larger').onclick=()=>fontSize(font+1);
+let dark=storage.get('dark',false);function theme(v){dark=v;document.body.classList.toggle('dark',dark);$('#theme').textContent=dark?'日间':'夜间';storage.set('dark',dark)}$('#theme').onclick=()=>theme(!dark);
+let practice=storage.get('practice',true);function practiceMode(v){practice=v;document.body.classList.toggle('practice-off',!v);$('#practice').textContent=v?'练习：开':'练习：关';$('#practice').setAttribute('aria-pressed',String(v));storage.set('practice',v)}$('#practice').onclick=()=>practiceMode(!practice);
+window.addEventListener('hashchange',navigateHash);document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
+aids(storage.get('aids',true));recall(storage.get('recall',true));fontSize(font);theme(dark);practiceMode(practice);
+function syncTopbarHeight(){document.documentElement.style.setProperty('--topbar-height',Math.ceil($('.topbar').getBoundingClientRect().height)+'px')}
+syncTopbarHeight();if(typeof ResizeObserver!=='undefined')new ResizeObserver(syncTopbarHeight).observe($('.topbar'));else window.addEventListener('resize',syncTopbarHeight);
+let scrollTimer;window.addEventListener('scroll',()=>{clearTimeout(scrollTimer);scrollTimer=setTimeout(()=>{if(state.chapter<0)return;const chapter=$('#story-content .chapter');if(!chapter)return;const ps=Array.from(chapter.querySelectorAll('p[id]'));const p=ps.find(p=>p.getBoundingClientRect().bottom>90);if(p)storage.set('anchor',p.id)},250)},{passive:true});
+if(location.hash)navigateHash();else showChapter(storage.get('chapter',-1),storage.get('anchor',null),false);
+finishReaderLoading();
+})().catch(showReaderLoadError);
+</script></body></html>
