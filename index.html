@@ -82,19 +82,15 @@ Princeton University and LICENSEE agrees to preserve same.
 </p></div>
 <a class="start-reading" href="#chapter-0001">开始阅读 →</a></section><div id="story-content"></div></main><dialog id="word-dialog" aria-labelledby="word-title"><div class="dialog-head"><h2 id="word-title"></h2><button id="close-dialog" aria-label="关闭词义窗口">×</button></div><p class="word-meta" id="word-stats"></p><div id="recall-box"><label for="recall-input">先回忆这个词在语境中的意思</label><input id="recall-input" class="recall-input" placeholder="输入你的中文理解或英文释义" autocomplete="off"><div class="actions"><button id="check-recall">输入后核对</button></div></div><p class="word-meta" id="recall-status" aria-live="polite"></p><div class="actions"><button id="reveal">揭晓词义</button><button id="first-use" class="secondary">返回首次出现</button></div><div class="definition" id="definition" hidden></div><div id="ratings" hidden><p class="word-meta">核对语境后自评，安排下次回顾</p><div class="actions"><button data-grade="0">忘了</button><button data-grade="1">有点熟</button><button data-grade="2">能回忆</button></div></div><div id="alternates" class="actions"></div><details class="source-list"><summary>词表来源</summary><p id="sources"></p></details></dialog><div class="toast" id="toast" role="status" hidden></div><noscript><p style="padding:2rem">此离线阅读器需要浏览器启用 JavaScript。可使用同目录中的 EPUB 阅读完整小说与词汇索引。</p></noscript><script>
 // BEGIN_READER_DATA_LOADER
-const readerDataConfig={"version":"535f9fce89657392","title":"偷星者与失忆公爵：全词汇高复现·英语一阅读趣读版","storageKey":"vocabbook-9765e1db1c3a-","chapterCount":296,"wordCount":9365};
+const readerDataConfig={"version":"196724ec9a30b247","title":"偷星者与失忆公爵：全词汇高复现·英语一阅读趣读版","storageKey":"vocabbook-9765e1db1c3a-","chapterCount":296,"wordCount":9365,"partCount":85};
 async function loadReaderBook(fetcher=fetch){
- const version=readerDataConfig.version;
- const parts=await Promise.all([1,2].map(async number=>{
-  const response=await fetcher('./book-'+number+'.json?v='+version);
+ const parts=await Promise.all(Array.from({length:readerDataConfig.partCount},async(_,number)=>{
+  const path='./assets/'+readerDataConfig.version+'/part-'+String(number).padStart(3,'0')+'.txt';
+  const response=await fetcher(path);
   if(!response.ok)throw new Error('阅读数据下载未完成。');
-  return response.json();
+  return response.text();
  }));
- const [first,second]=parts;
- if(!first||!second||first.version!==version||second.version!==version||first.part!==1||second.part!==2)throw new Error('阅读数据版本不一致。');
- const source=first.data;
- if(!source||!Array.isArray(source.chapters)||!Array.isArray(source.words)||!Array.isArray(second.chapters))throw new Error('阅读数据格式不完整。');
- const data={...source,chapters:[...source.chapters,...second.chapters]};
+ const data=JSON.parse(parts.join(''));
  if(data.title!==readerDataConfig.title||data.storageKey!==readerDataConfig.storageKey||data.expectedEntryCount!==readerDataConfig.wordCount||data.words.length!==readerDataConfig.wordCount||data.chapters.length!==readerDataConfig.chapterCount)throw new Error('阅读数据与页面版本不符。');
  if(new Set(data.chapters.map(c=>c?.id)).size!==data.chapters.length||data.chapters.some(c=>!c||typeof c.id!=='string'||typeof c.html!=='string'||!Array.isArray(c.paragraphs)||!Array.isArray(c.questions)))throw new Error('章节数据不完整。');
  return data;
@@ -238,7 +234,7 @@ function openWord(index){
  if(!state.aids){toast('词义辅助已关闭。可在顶部重新开启。');return}if(!data.words[index])return;state.word=index;
  const w=data.words[index];$('#word-title').textContent=w.word;$('#word-stats').textContent=`正文累计 ${w.exact+w.variant+w.pattern} 次 · ${w.chapterCount} 章`;
  $('#recall-box').hidden=!state.recall;$('#recall-input').value='';$('#recall-status').textContent='';$('#definition').hidden=true;$('#definition').replaceChildren();$('#reveal').hidden=false;$('#ratings').hidden=true;
- $('#sources').textContent='来源：'+w.sources.join('；');$('#first-use').hidden=!w.first;
+ $('#sources').hidden=true;$('#sources').textContent='';$('#first-use').hidden=!w.first;
  $('#first-use').onclick=()=>{if(w.first){$('#word-dialog').close();location.hash=w.first;const m=w.first.match(/^chapter-(\d{4})/);showChapter(Number(m[1])-1,w.first)}};
  $('#alternates').replaceChildren();
  if(!$('#word-dialog').open)$('#word-dialog').showModal();
